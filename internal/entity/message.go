@@ -15,6 +15,6 @@ type Message struct {
 	ReplyToMessageId int64     `json:"reply_to_message_id"`
 }
 
-func (m *Message) EntityId() ID {
+func (m Message) EntityID() ID {
 	return ID(fmt.Sprintf("message:%d", m.MessageId))
 }
