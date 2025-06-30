@@ -18,3 +18,7 @@ type Message struct {
 func (m Message) EntityID() ID {
 	return ID(fmt.Sprintf("message:%d", m.MessageId))
 }
+
+func (m Message) TableName() string {
+	return "messages"
+}

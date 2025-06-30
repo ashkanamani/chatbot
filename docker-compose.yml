@@ -1,0 +1,24 @@
+version: '3.7'
+
+services:
+  postgres:
+    env_file:
+      - .env
+    image: postgres:latest
+    container_name: chatbot-pg
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ashkann}
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - chatbot-network
+volumes:
+  postgres_data:  # Declare the volume for Postgres data
+    driver: local
+  redis_data:  # Declare the volume for Redis data
+    driver: local
+networks:
+  chatbot-network:
+    driver: bridge

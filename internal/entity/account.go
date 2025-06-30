@@ -17,6 +17,10 @@ type Account struct {
 	LinkToken   string    `json:"link_token"`
 }
 
+func (a Account) TableName() string {
+	return "accounts"
+}
+
 func (a Account) EntityID() ID {
 	return ID(fmt.Sprintf("account:%d", a.Id))
 }
