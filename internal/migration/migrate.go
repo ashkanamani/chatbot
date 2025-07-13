@@ -10,9 +10,7 @@ import (
 )
 
 func RunMigrations(migrationsPath, dbURL string) error {
-	fmt.Println("migration path:", migrationsPath)
 	absPath, err := filepath.Abs(migrationsPath)
-	fmt.Println("abs path:", absPath)
 	m, err := migrate.New(fmt.Sprintf("file://%s", absPath), dbURL)
 	if err != nil {
 		slog.Error("error", "err", err)

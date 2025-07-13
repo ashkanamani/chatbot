@@ -40,7 +40,7 @@ func StartDockerInstance(pool *dockertest.Pool, image, tag string, retryFunc Ret
 		slog.Error("could not start docker instance", "image", image, "tag", tag, "err", err.Error())
 		os.Exit(1)
 	}
-	if err := resource.Expire(120); err != nil {
+	if err := resource.Expire(30); err != nil {
 		slog.Error("could not set resource expiration", "image", image, "tag", tag, "err", err.Error())
 		os.Exit(1)
 	}
