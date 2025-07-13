@@ -18,8 +18,7 @@ var runmigrationCmd = &cobra.Command{
 }
 
 func runMigrations(cmd *cobra.Command, args []string) {
-	postgresAddress := os.Getenv("POSTGRES_ADDRESS")
-	err := migration.RunMigrations("internal/migration/sql", postgresAddress)
+	err := migration.RunMigrations("internal/migration/sql", os.Getenv("POSTGRES_ADDRESS"))
 	if err != nil {
 		slog.Error("failed to run migrations", "err", err)
 		os.Exit(1)

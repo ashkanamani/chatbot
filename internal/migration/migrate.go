@@ -6,10 +6,14 @@ import (
 	_ "github.com/golang-migrate/migrate/v4/database/postgres"
 	_ "github.com/golang-migrate/migrate/v4/source/file"
 	"log/slog"
+	"path/filepath"
 )
 
 func RunMigrations(migrationsPath, dbURL string) error {
-	m, err := migrate.New(fmt.Sprintf("file://%s", migrationsPath), dbURL)
+	fmt.Println("migration path:", migrationsPath)
+	absPath, err := filepath.Abs(migrationsPath)
+	fmt.Println("abs path:", absPath)
+	m, err := migrate.New(fmt.Sprintf("file://%s", absPath), dbURL)
 	if err != nil {
 		slog.Error("error", "err", err)
 		return err

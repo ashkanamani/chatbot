@@ -37,17 +37,18 @@ func StartDockerInstance(pool *dockertest.Pool, image, tag string, retryFunc Ret
 		config.RestartPolicy = docker.RestartPolicy{Name: "no"}
 	})
 	if err != nil {
-		slog.Error("could not start docker instance", "image", image, "tag", tag)
+		slog.Error("could not start docker instance", "image", image, "tag", tag, "err", err.Error())
 		os.Exit(1)
 	}
 	if err := resource.Expire(120); err != nil {
-		slog.Error("could not set resource expiration", "image", image, "tag", tag)
+		slog.Error("could not set resource expiration", "image", image, "tag", tag, "err", err.Error())
 		os.Exit(1)
 	}
 	if err := pool.Retry(func() error {
 		return retryFunc(resource)
 	}); err != nil {
-		slog.Error("could not connect to the resourcd", "image", image, "tag", tag)
+		slog.Error("could not connect to the resource", "image", image, "tag", tag, "err", err.Error())
+		os.Exit(1)
 	}
 	slog.Info("connected to docker instance", "image", image, "tag", tag)
 	return resource
