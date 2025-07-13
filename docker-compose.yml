@@ -7,13 +7,23 @@ services:
     image: postgres:latest
     container_name: chatbot-pg
     environment:
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ashkann}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
     ports:
       - "${POSTGRES_PORT}:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
       - chatbot-network
+  redis:
+    image: redis/redis-stack-server
+    container_name: chatbot-redis
+    ports:
+      - "6381:6379"
+    networks:
+      - chatbot-network
+    volumes:
+      - redis_data:/data  # Persist Redis data in the volume
 volumes:
   postgres_data:  # Declare the volume for Postgres data
     driver: local
