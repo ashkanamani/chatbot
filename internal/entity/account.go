@@ -10,11 +10,12 @@ type Account struct {
 	FirstName   string    `json:"first_name"`
 	LastName    string    `json:"last_name"`
 	Username    string    `json:"username"`
-	PhoneNumber string    `json:"phone_number"`
+	DisplayName string    `json:"display_name"`
 	JoinedAt    time.Time `json:"joined_at"`
 	IsActive    bool      `json:"is_active"`
 	Blocked     bool      `json:"blocked"`
 	LinkToken   string    `json:"link_token"`
+	State       string    `json:"state"`
 }
 
 func (a Account) TableName() string {

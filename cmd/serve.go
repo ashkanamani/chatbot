@@ -49,7 +49,7 @@ func serve(cmd *cobra.Command, args []string) {
 	// setup telegram
 	tg, err := telegram.NewTelegram(app, os.Getenv("TELEGRAM_API_TOKEN"))
 	if err != nil {
-		slog.Error("could not setup telegram", "error", err.Error()
+		slog.Error("could not setup telegram", "error", err.Error())
 		os.Exit(1)
 	}
 	tg.Start()

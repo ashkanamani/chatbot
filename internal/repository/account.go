@@ -36,7 +36,7 @@ func NewAccountPostgresRepository(conn *pgx.Conn, tableName string) *AccountPost
 func (p *AccountPostgresRepository) Get(ctx context.Context, id entity.ID) (entity.Account, error) {
 	var acc entity.Account
 	query := "SELECT " +
-		"id, first_name, last_name, username, phone_number, joined_at, is_active, blocked, link_token FROM " +
+		"id, first_name, last_name, username, display_name, joined_at, is_active, blocked, link_token FROM " +
 		p.tableName +
 		` WHERE id = $1`
 	//
@@ -45,7 +45,7 @@ func (p *AccountPostgresRepository) Get(ctx context.Context, id entity.ID) (enti
 		&acc.FirstName,
 		&acc.LastName,
 		&acc.Username,
-		&acc.PhoneNumber,
+		&acc.DisplayName,
 		&acc.JoinedAt,
 		&acc.IsActive,
 		&acc.Blocked,
@@ -60,13 +60,13 @@ func (p *AccountPostgresRepository) Get(ctx context.Context, id entity.ID) (enti
 
 func (p *AccountPostgresRepository) Save(ctx context.Context, acc entity.Account) error {
 	query := "INSERT INTO " + p.tableName +
-		`(id, first_name, last_name, username, phone_number, joined_at, is_active, blocked, link_token)
+		`(id, first_name, last_name, username, display_name, joined_at, is_active, blocked, link_token)
 			VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
 			ON CONFLICT (id) DO UPDATE SET
 			first_name = EXCLUDED.first_name,
 			last_name = EXCLUDED.last_name,
 			username = EXCLUDED.username,
-			phone_number = EXCLUDED.phone_number,
+			display_name = EXCLUDED.display_name,
 			joined_at = EXCLUDED.joined_at,
 			is_active = EXCLUDED.is_active,
 			blocked = EXCLUDED.blocked,
@@ -76,7 +76,7 @@ func (p *AccountPostgresRepository) Save(ctx context.Context, acc entity.Account
 		acc.FirstName,
 		acc.LastName,
 		acc.Username,
-		acc.PhoneNumber,
+		acc.DisplayName,
 		acc.JoinedAt,
 		acc.IsActive,
 		acc.Blocked,

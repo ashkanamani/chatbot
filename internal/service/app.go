@@ -1,11 +1,11 @@
 package service
 
 type App struct {
-	Account *AccountService
+	Accounts *AccountService
 }
 
-func NewApp(account *AccountService) *App {
+func NewApp(accounts *AccountService) *App {
 	return &App{
-		Account: account,
+		Accounts: accounts,
 	}
 }

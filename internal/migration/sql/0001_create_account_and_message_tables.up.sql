@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS accounts (
     first_name TEXT NOT NULL,
     last_name TEXT,
     username TEXT,
-    phone_number TEXT,
+    display_name TEXT,
     joined_at TIMESTAMPTZ NOT NULL,
     is_active BOOLEAN DEFAULT TRUE,
     blocked BOOLEAN DEFAULT FALSE,

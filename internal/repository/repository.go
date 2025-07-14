@@ -16,11 +16,3 @@ type CommonBehaviour[T entity.Entity] interface {
 type AccountRepository interface {
 	CommonBehaviour[entity.Account]
 }
-
-//type AccountRepository[T entity.Account] interface {
-//	CommonBehaviour[entity.Account]
-//}
-
-//type MessageRepository[T entity.Message] interface {
-//	CommonBehaviour[entity.Message]
-//}

@@ -23,14 +23,16 @@ func NewTelegram(app *service.App, apiToken string) (*Telegram, error) {
 		slog.Error("failed to connect to telegram servers", "error", err.Error())
 		return nil, err
 	}
-	telegram := &Telegram{
+	tg := &Telegram{
 		App: app,
 		bot: b,
 	}
 
-	telegram.setupHandlers()
+	tg.setupMiddlewares()
 
-	return telegram, nil
+	tg.setupHandlers()
+
+	return tg, nil
 }
 
 func (t *Telegram) Start() {

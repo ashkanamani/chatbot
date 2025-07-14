@@ -25,7 +25,7 @@ func TestAccountPostgresRepositoryGetAndSet(t *testing.T) {
 		FirstName:   "Nishtman",
 		LastName:    "Kurdi",
 		Username:    "RadioNishtman",
-		PhoneNumber: "918918918918",
+		DisplayName: "Kurd",
 		JoinedAt:    time.Date(2000, 1, 1, 0, 0, 0, 0, iranLoc),
 		IsActive:    true,
 		Blocked:     false,
@@ -39,7 +39,7 @@ func TestAccountPostgresRepositoryGetAndSet(t *testing.T) {
 	assert.Equal(t, "Nishtman", val.FirstName)
 	assert.Equal(t, "Kurdi", val.LastName)
 	assert.Equal(t, "RadioNishtman", val.Username)
-	assert.Equal(t, "918918918918", val.PhoneNumber)
+	assert.Equal(t, "Kurd", val.DisplayName)
 	assert.True(t, val.JoinedAt.Equal(time.Date(2000, 1, 1, 0, 0, 0, 0, iranLoc)))
 	assert.Equal(t, true, val.IsActive)
 	assert.Equal(t, false, val.Blocked)
